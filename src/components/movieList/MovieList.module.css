@@ -1,0 +1,7 @@
+.movieList {
+  list-style: square;
+}
+
+.movie {
+  text-decoration: none;
+}
