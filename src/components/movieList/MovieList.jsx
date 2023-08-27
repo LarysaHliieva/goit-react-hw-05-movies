@@ -9,7 +9,9 @@ const MovieList = ({ list }) => {
     <ul className={styles.movieList}>
       {list.map(({ id, title }) => (
         <li key={id}>
-          <Link className={styles.movie}>{title}</Link>
+          <Link className={styles.movie} to={`/movies/${id}`}>
+            {title}
+          </Link>
         </li>
       ))}
     </ul>

@@ -1,0 +1,28 @@
+.input {
+  margin-right: 20px;
+  padding: 5px 20px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  outline: none;
+}
+
+.input:focus {
+  border: 1px solid red;
+}
+
+.searchBtn {
+  padding: 5px 20px;
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 5px;
+  outline: none;
+}
+
+.searchBtn:hover,
+.searchBtn:focus,
+.searchBtn:active {
+  background-color: rgb(209, 199, 199);
+  color: white;
+  border-color: rgb(209, 199, 199);
+}
