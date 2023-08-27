@@ -1,0 +1,26 @@
+.header {
+  padding: 0 40px;
+  box-shadow: 0px 0px 10px #767575;
+}
+
+.navMenu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.navMenuItem:not(:last-child) {
+  margin-right: 10px;
+}
+
+.navLink {
+  display: block;
+  padding: 20px 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.navLink:global(.active) {
+  color: red;
+}
