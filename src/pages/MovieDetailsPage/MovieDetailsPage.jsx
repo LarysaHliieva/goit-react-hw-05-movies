@@ -1,5 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
+
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
 
 import { getMovieById } from 'api/movies-api';
 
@@ -14,6 +21,9 @@ const MovieDetailsPage = () => {
 
   const { movieId } = useParams();
 
+  const location = useLocation();
+  const from = location.state?.from || '/';
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -21,7 +31,6 @@ const MovieDetailsPage = () => {
         const data = await getMovieById(movieId);
         setMovie(data);
       } catch (response) {
-        console.log(response.data.message);
         setError(response.data.message);
       } finally {
         setIsLoading(false);
@@ -37,7 +46,10 @@ const MovieDetailsPage = () => {
       {error && <p>😥 Something went wrong... Please, reload and try again!</p>}
       {movie && (
         <>
-          <Link>Go back</Link>
+          <Link className={styles.backLink} to={from}>
+            Go back
+          </Link>
+
           <div className={styles.movieCard}>
             <img
               className={styles.poster}
@@ -71,12 +83,20 @@ const MovieDetailsPage = () => {
             <p>Additional information</p>
             <ul>
               <li>
-                <NavLink to={'cast'} className={styles.additionalLink}>
+                <NavLink
+                  to={'cast'}
+                  className={styles.additionalLink}
+                  state={{ from }}
+                >
                   Cast
                 </NavLink>
               </li>
               <li>
-                <NavLink to={'reviews'} className={styles.additionalLink}>
+                <NavLink
+                  to={'reviews'}
+                  className={styles.additionalLink}
+                  state={{ from }}
+                >
                   Reviews
                 </NavLink>
               </li>
@@ -84,7 +104,9 @@ const MovieDetailsPage = () => {
           </div>
         </>
       )}
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

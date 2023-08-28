@@ -30,3 +30,20 @@
 .additionalLink:global(.active) {
   color: red;
 }
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: rgb(231, 226, 226);
+  color: black;
+}
+
+.backLink:hover,
+.backLink:focus,
+.backLink:active {
+  background-color: silver;
+  color: white;
+}
