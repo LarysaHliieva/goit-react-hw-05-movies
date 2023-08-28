@@ -28,29 +28,41 @@ const MovieDetailsPage = () => {
     };
 
     fetchMovie();
-  }, [setIsLoading]);
+  }, [setIsLoading, movieId]);
 
   return (
-    <div className={styles.MovieDetails}>
+    <div className={styles.movieDetails}>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>😥 Something went wrong... Please, reload and try again!</p>}
       {movie && (
         <>
           <Link>Go back</Link>
           <div className={styles.movieCard}>
-            <img src={movie.backdrop_path} alt={movie.title} />
+            <img
+              className={styles.poster}
+              src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+              alt={movie.title}
+            />
             <div className={styles.description}>
-              <h2>{movie.title}</h2>
-              <p>User Score: {Math.trunc(movie.vote_average * 10)}%</p>
+              <h2>
+                {movie.title} ({movie.release_date.slice(0, 4)})
+              </h2>
+              <p>
+                User Score:
+                {movie.vote_average &&
+                  ` ${Math.trunc(movie.vote_average * 10)}%`}
+              </p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
               <h3>Genres</h3>
               <p>
                 {movie.genres
-                  .reduce((acc, { name }) => `${acc}, ${name}`, '')
+                  ?.reduce((acc, { name }) => `${acc}, ${name}`, '')
                   .slice(2)}
               </p>
             </div>
           </div>
-          <div>
+          <div className={styles.additionalInfo}>
             <p>Additional information</p>
             <ul>
               <li>

@@ -1,0 +1,24 @@
+.movieDetails {
+  padding: 20px 40px;
+}
+
+.movieCard {
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c5c1c1;
+}
+
+.poster {
+  display: block;
+  width: 300px;
+  max-height: 445px;
+  object-fit: cover;
+}
+
+.description {
+  margin-left: 10px;
+}
+
+.additionalInfo {
+  border-bottom: 1px solid #c5c1c1;
+}
