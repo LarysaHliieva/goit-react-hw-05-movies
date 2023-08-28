@@ -22,3 +22,11 @@
 .additionalInfo {
   border-bottom: 1px solid #c5c1c1;
 }
+
+.additionalLink {
+  text-decoration: none;
+}
+
+.additionalLink:global(.active) {
+  color: red;
+}

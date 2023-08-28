@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 
 import { getMovieById } from 'api/movies-api';
+
+import fotoDefault from 'components/photoDefault.avif';
 
 import styles from './MovieDetailsPage.module.css';
 
@@ -18,7 +20,6 @@ const MovieDetailsPage = () => {
         setIsLoading(true);
         const data = await getMovieById(movieId);
         setMovie(data);
-        console.log(data);
       } catch (response) {
         console.log(response.data.message);
         setError(response.data.message);
@@ -40,7 +41,11 @@ const MovieDetailsPage = () => {
           <div className={styles.movieCard}>
             <img
               className={styles.poster}
-              src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+                  : fotoDefault
+              }
               alt={movie.title}
             />
             <div className={styles.description}>
@@ -66,10 +71,14 @@ const MovieDetailsPage = () => {
             <p>Additional information</p>
             <ul>
               <li>
-                <Link to={'cast'}>Cast</Link>
+                <NavLink to={'cast'} className={styles.additionalLink}>
+                  Cast
+                </NavLink>
               </li>
               <li>
-                <Link to={'reviews'}>Reviews</Link>
+                <NavLink to={'reviews'} className={styles.additionalLink}>
+                  Reviews
+                </NavLink>
               </li>
             </ul>
           </div>

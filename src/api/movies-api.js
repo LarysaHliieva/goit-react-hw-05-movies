@@ -26,3 +26,13 @@ export const getMovieById = async id => {
   const { data } = await instance.get(`/movie/${id}`);
   return data;
 };
+
+export const getCastById = async id => {
+  const { data } = await instance.get(`/movie/${id}/credits`);
+  return data;
+};
+
+export const getReviewstById = async id => {
+  const { data } = await instance.get(`/movie/${id}/reviews`);
+  return data;
+};
